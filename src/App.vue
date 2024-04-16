@@ -4,12 +4,14 @@ import { store } from './store.js';
 import AppHeader from './components/AppHeader.vue';
 import CharacterList from './components/CharactersList.vue';
 import AppLoader from './components/AppLoader.vue';
+import AppSelect from "./components/AppSelect.vue"
 
 export default {
   components: {
     AppHeader,
     CharacterList,
-    AppLoader
+    AppLoader,
+    AppSelect
   },
   data() {
     return {
@@ -22,25 +24,63 @@ export default {
   },
 
   methods: {
+
+  
+
+    getArcheFromApi(){
+				axios.get("https://db.ygoprodeck.com/api/v7/archetypes.php")
+				.then((response) => {
+					store.archeList = response.data;
+				})
+
+    },
+
+
+
+
+
     getCardsFromApi() {
       axios.get("https://db.ygoprodeck.com/api/v7/cardinfo.php", { params: this.qParams })
         .then((response) => {
           store.cards = response.data.data;
           store.isLoading = false;
         })
-    }
+    },
+    
+
+
+    filterApi(){
+				if (store.archeFilter !== ""){
+					this.qParams.archetype = store.archeFilter
+				} else{
+					delete this.qParams.archetype
+				};
+
+				axios.get("https://db.ygoprodeck.com/api/v7/cardinfo.php", { params: this.qParams })
+				.then((response) => {
+				store.cards = response.data.data;
+				console.log = response.data.data;
+				})
+			}
+
+
   },
   mounted() {
     this.getCardsFromApi();
+    this.getArcheFromApi();
   }
 };
 
 </script>
 
 <template>
-  <AppHeader></AppHeader>
+  <header>
+    <AppHeader></AppHeader>
+  </header>
+ 
 
   <main>
+    <AppSelect @archeFilter="filterApi"></AppSelect>
     <CharacterList v-if="!store.isLoading"></CharacterList>
     <AppLoader v-else></AppLoader>
   </main>
