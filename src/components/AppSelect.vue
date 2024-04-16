@@ -14,7 +14,7 @@
 <template>
     <div class="container">
         <select v-model="store.archeFilter" @change="$emit('archeFilter')">
-            <option value="notaFilter" selected>Nessun filtro selezionato</option>
+            <option v-if="!store.archeFilter" value="" disabled selected>Scegli un archetipo</option>
             <option v-for="archetype in store.archeList" :value="archetype.archetype_name">{{ archetype.archetype_name }}</option>
         </select>
     </div>

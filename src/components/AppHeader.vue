@@ -5,24 +5,27 @@ export default {
 </script>
 
 <template>
-    <header>
-        <nav class="navbar bg-body-tertiary">
-             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="../img/logo.png" alt="Logo" width="300" height="100" class="d-inline-block align-text-top">
-                    <h1>Yu-Gi-Oh Api</h1>
-                </a>
+<header>
+    <nav class="navbar">
+         <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <a class="navbar-brand" href="#">
+                        <img src="../img/logo.png" alt="Logo" width="300" height="100" class="d-inline-block align-text-top">
+                    </a>
+                </div>
+                <div class="col text-center"> 
+                    <h1 class="mb-0">Yu-Gi-Oh Api</h1>
+                </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 </template>
 
 <style scoped lang="scss">
 
 .header {
-    width: 100%;
-    height: 100%;
-    margin: auto;
     h1 {
         font-size: 50px;
         text-align: center;

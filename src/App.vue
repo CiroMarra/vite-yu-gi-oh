@@ -80,11 +80,18 @@ export default {
  
 
   <main>
-    <AppSelect @archeFilter="filterApi"></AppSelect>
-    <CharacterList v-if="!store.isLoading"></CharacterList>
-    <AppLoader v-else></AppLoader>
+    <div class="container">
+      <AppSelect @archeFilter="filterApi"></AppSelect>
+      <CharacterList v-if="!store.isLoading"></CharacterList>
+      <AppLoader v-else></AppLoader>
+    </div>
   </main>
 </template>
 
 <style lang="scss">
+main {
+  background-color: white;
+}
+
+
 </style>
