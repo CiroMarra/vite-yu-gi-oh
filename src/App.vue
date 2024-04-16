@@ -14,27 +14,32 @@ export default {
   data() {
     return {
       store,
+      qParams: {
+					num: 20,
+					offset: 0
+				}
 
     };
   },
 
   methods: {
-    getCardFromApi() {
-      // Prende le carte dall'api (sperando che non ti banna) e popola lo store del deck.
-      
-      axios.get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
-
-      .then((response) => {
-        store.cards = response.data.data;
-        store.isLoading = false;
-      });
-
+    getCardsFromApi() {
+      axios.get("https://db.ygoprodeck.com/api/v7/cardinfo.php", { params: this.qParams })
+        .then((response) => {
+          store.cards = response.data.data;
+          store.isLoading = false;
+        })
+        .catch((error) => {
+          console.error('Errore nella richiesta API:', error);
+          store.isLoading = false;
+        });
     }
   },
   mounted() {
-    this.getCardFromApi();
+    this.getCardsFromApi();
   }
-}
+};
+
 </script>
 
 <template>
