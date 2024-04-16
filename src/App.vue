@@ -18,7 +18,6 @@ export default {
 					num: 20,
 					offset: 0
 				}
-
     };
   },
 
