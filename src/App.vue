@@ -29,10 +29,6 @@ export default {
           store.cards = response.data.data;
           store.isLoading = false;
         })
-        .catch((error) => {
-          console.error('Errore nella richiesta API:', error);
-          store.isLoading = false;
-        });
     }
   },
   mounted() {
